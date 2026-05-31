@@ -1,0 +1,13 @@
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" rx="40" fill="#EFF6FF"/>
+  <rect x="120" y="120" width="560" height="500" rx="48" fill="#FFFFFF"/>
+  <rect x="180" y="180" width="440" height="120" rx="24" fill="#BFDBFE"/>
+  <circle cx="320" cy="270" r="24" fill="#2563EB"/>
+  <circle cx="420" cy="270" r="24" fill="#2563EB"/>
+  <circle cx="520" cy="270" r="24" fill="#2563EB"/>
+  <rect x="220" y="340" width="360" height="36" rx="18" fill="#93C5FD"/>
+  <rect x="220" y="400" width="320" height="36" rx="18" fill="#93C5FD"/>
+  <rect x="220" y="460" width="280" height="36" rx="18" fill="#93C5FD"/>
+  <rect x="260" y="540" width="240" height="44" rx="22" fill="#2563EB"/>
+  <text x="400" y="740" text-anchor="middle" fill="#1D4ED8" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="700">Signin Alt</text>
+</svg>
