@@ -46,9 +46,6 @@ RUN php artisan storage:link 2>/dev/null || true
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# 10. Clear cache and compile configuration
-RUN php artisan config:cache 2>/dev/null || true
-RUN php artisan route:cache 2>/dev/null || true
-
-# 11. Run migrations and start the server
-CMD php artisan migrate --force && apache2-foreground
+# 10. Do not cache config in build; runtime env vars should control database settings
+# 11. Clear any build-time config cache and run migrations on startup
+CMD php artisan config:clear && php artisan migrate --force && apache2-foreground
