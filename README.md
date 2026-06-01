@@ -1,4 +1,4 @@
-![Todo App Banner]!(https://github.com/NethranjaliSE/project-images/blob/main/docs/todo_banner.png)
+![Todo App Banner](https://github.com/NethranjaliSE/project-images/blob/main/docs/todo_banner.png)
 
 # 📝 Full-Stack Todo Web Application
 
