@@ -17,7 +17,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 2. Enable Apache mod_rewrite for Laravel routing
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
+
 
 # 3. Change Apache Document Root to Laravel's public folder
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
@@ -51,3 +52,5 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
+
+COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
