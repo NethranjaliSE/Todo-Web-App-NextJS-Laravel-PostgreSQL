@@ -4,11 +4,8 @@ services:
     env: php
     # buildCommand runs during Render build phase
     buildCommand: ./render-build.sh
-    # startCommand should bind to $PORT provided by Render
+    # startCommand should bind to $PORT provided by Render (serves `public` directory)
     startCommand: php artisan serve --host 0.0.0.0 --port $PORT
-    root: public
-    # Optional health check path
-    healthCheckPath: /
     envVars:
       - key: APP_ENV
         value: production
