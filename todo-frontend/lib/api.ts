@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie';
 
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://127.0.0.1:8000/api';
-export const API_ROOT = API_BASE_URL.replace(/\/api$/, '');
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://127.0.0.1:8000';
+export const API_BASE_URL = baseUrl.replace(/\/$/, '');
+export const API_ROOT = API_BASE_URL;
 
 export const fetchAPI = async (endpoint: string, options: RequestInit = {}) => {
   const token = Cookies.get('auth_token');
@@ -22,7 +23,8 @@ export const fetchAPI = async (endpoint: string, options: RequestInit = {}) => {
   };
 
   try {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    const apiEndpoint = endpoint.startsWith("/api") ? endpoint : `/api${endpoint}`;
+    const response = await fetch(`${API_BASE_URL}${apiEndpoint}`, {
       ...options,
       headers,
     });
