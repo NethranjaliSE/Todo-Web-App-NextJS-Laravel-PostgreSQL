@@ -24,8 +24,7 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# 4. Modify Apache to listen on Render's dynamic $PORT
-RUN sed -i 's/80/${PORT:-80}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
+# 4. Dynamic Apache port handling is done at container startup, not build time
 
 # 5. Set working directory
 WORKDIR /var/www/html
@@ -46,6 +45,9 @@ RUN php artisan storage:link 2>/dev/null || true
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# 10. Do not cache config in build; runtime env vars should control database settings
-# 11. Clear any build-time config cache and run migrations on startup
-CMD php artisan config:clear && php artisan migrate --force && apache2-foreground
+# 10. Copy runtime entrypoint
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["apache2-foreground"]
