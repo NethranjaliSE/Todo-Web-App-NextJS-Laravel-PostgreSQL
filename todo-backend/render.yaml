@@ -11,7 +11,7 @@ services:
       - key: APP_ENV
         value: production
       - key: APP_KEY
-        value: "<your_app_key_here>"
+        value: "base64:Ogl+66cV8AFQMzX/horwenj6XCSfmmqNQ3lFnwz0/f8="
       - key: APP_DEBUG
         value: "false"
       - key: APP_URL
@@ -19,17 +19,19 @@ services:
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
-        value: "<your_db_host>"
+        value: "ep-young-block-aph0fuod.c-7.us-east-1.aws.neon.tech"
       - key: DB_PORT
         value: "5432"
       - key: DB_DATABASE
-        value: "<your_db_name>"
+        value: "neondb"
       - key: DB_USERNAME
-        value: "<your_db_user>"
+        value: "neondb_owner"
       - key: DB_PASSWORD
-        value: "<your_db_password>"
+        value: "npg_H9DKW8IZiPxL"
       - key: DB_SSLMODE
         value: require
-      # You can alternatively set a single connection string via DATABASE_URL
+      # Use the full database URL for Laravel's DB_URL config
+      - key: DB_URL
+        value: "postgresql://neondb_owner:npg_H9DKW8IZiPxL@ep-young-block-aph0fuod.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require"
       - key: DATABASE_URL
-        value: "<your_database_url_or_empty>"
+        value: "postgresql://neondb_owner:npg_H9DKW8IZiPxL@ep-young-block-aph0fuod.c-7.us-east-1.aws.neon.tech/neondb?sslmode=require"
