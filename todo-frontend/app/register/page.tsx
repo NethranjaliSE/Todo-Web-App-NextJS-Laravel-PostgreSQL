@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import { API_BASE_URL } from "@/lib/api";
 import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 export default function RegisterPage() {
@@ -26,8 +27,7 @@ export default function RegisterPage() {
    setError("");
 
    try {
-     const res = await fetch("http://127.0.0.1:8000/api/register", {
-       method: "POST",
+       const res = await fetch(`${API_BASE_URL}/register`, {
        headers: {
          "Content-Type": "application/json",
          Accept: "application/json",
