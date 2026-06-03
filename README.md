@@ -12,7 +12,7 @@ A robust, production-ready Full-Stack Todo application designed to manage daily 
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | Next.js, React, Tailwind CSS |
+| **Frontend** | Next.js, Tailwind CSS |
 | **Backend** | Laravel, PHP 8.x |
 | **Database** | PostgreSQL |
 | **Authentication** | Laravel Sanctum |
