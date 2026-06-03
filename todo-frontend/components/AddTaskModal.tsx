@@ -28,14 +28,35 @@ export default function AddTaskModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 1. Weekend Check Logic
+    if (formData.due_date) {
+      const selectedDate = new Date(formData.due_date);
+      const dayOfWeek = selectedDate.getDay();
+
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
+        const wantsToProceed = window.confirm(
+          "Wait! You selected a weekend (Saturday/Sunday). Are you sure you want to add a task on your day off?",
+        );
+
+        if (!wantsToProceed) {
+          return; // Stops the function if they click Cancel
+        }
+      }
+    }
+
+    // 2. API Submission Logic
     setLoading(true);
     try {
       await fetchAPI("/tasks", {
         method: "POST",
         body: JSON.stringify(formData),
       });
+
       onTaskAdded();
       onClose();
+
+      // Reset the form
       setFormData({
         title: "",
         description: "",

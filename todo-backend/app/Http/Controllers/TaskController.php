@@ -11,7 +11,7 @@ class TaskController extends Controller
     public function index()
     {
         // Only get tasks for the logged-in user
-        $tasks = Task::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        $tasks = Task::where('user_id', Auth::id())->orderBy('created_at', 'asc')->get();
         return response()->json($tasks);
     }
 
